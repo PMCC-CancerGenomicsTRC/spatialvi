@@ -15,6 +15,7 @@ include { paramsSummaryMultiqc   } from '../subworkflows/nf-core/utils_nfcore_pi
 include { softwareVersionsToYAML } from '../subworkflows/nf-core/utils_nfcore_pipeline'
 include { methodsDescriptionText } from '../subworkflows/local/utils_nfcore_spatialvi_pipeline'
 
+include { XFUSE } from '../subworkflows/local/xfuse'
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     RUN MAIN WORKFLOW
@@ -67,6 +68,9 @@ workflow SPATIALVI {
         meta, outs -> [meta, outs.findAll{ it -> DOWNSTREAM_REQUIRED_SPACERANGER_FILES.contains(it.name) }]
     }
 
+    
+
+
     //
     // MODULE: Read ST data and save as `SpatialData`
     //
@@ -74,6 +78,17 @@ workflow SPATIALVI {
         ch_downstream_input
     )
     ch_versions = ch_versions.mix(READ_DATA.out.versions)
+
+
+    // SUBWORKFLOW: xfuse
+    ch_spaceranger_images = SPACERANGER.out.lowres.concat( READ_DATA.out.lowres )
+    ch_spaceranger_bcimages = SPACERANGER.out.lowres.concat( READ_DATA.out.lowres )
+    ch_spaceranger_images = SPACERANGER.out.lowres.concat( READ_DATA.out.lowres )
+    ch_spaceranger_images = SPACERANGER.out.lowres.concat( READ_DATA.out.lowres )
+    ch_spaceranger_images = SPACERANGER.out.lowres.concat( READ_DATA.out.lowres )
+    ch_spaceranger_images = SPACERANGER.out.lowres.concat( READ_DATA.out.lowres )
+
+    XFUSE ( ch_spaceranger_images )
 
     //
     // SUBWORKFLOW: Downstream analyses of ST data
