@@ -51,6 +51,12 @@ workflow SPACERANGER {
     ch_versions = ch_versions.mix(SPACERANGER_COUNT.out.versions.first())
 
     emit:
-    sr_dir   = SPACERANGER_COUNT.out.outs
+    countsh5 = SPACERANGER_COUNT.out.countsh5
+    lowres = SPACERANGER_COUNT.out.lowres
+    scalefactors = SPACERANGER_COUNT.out.scalefactors
+    tissuepositions = SPACERANGER_COUNT.out.tissuepositions
+    probeset = SPACERANGER_COUNT.out.probeset
+    summarymetrics = SPACERANGER_COUNT.out.metrics
+    barcodesgz = SPACERANGER_COUNT.out.barcodesgz
     versions = ch_versions                  // channel: [ versions.yml ]
 }

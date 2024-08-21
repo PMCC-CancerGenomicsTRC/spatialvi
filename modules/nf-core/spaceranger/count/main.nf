@@ -10,7 +10,13 @@ process SPACERANGER_COUNT {
     path(probeset)
 
     output:
-    tuple val(meta), path("outs/**"), emit: outs
+    tuple val(meta), path("outs/filtered_feature_bc_matrix.h5"), emit: countsh5
+    tuple val(meta), path("outs/spatial/tissue_lowres_image.png"), emit: lowres
+    tuple val(meta), path("outs/spatial/scalefators_json.json"), emit: scalefactors
+    tuple val(meta), path("outs/spatial/tissue_positions.csv"), emit: tissuepositions
+    tuple val(meta), path("outs/probe_set.csv"), emit: probeset
+    tuple val(meta), path("outs/metrics_summary.csv"), emit: metrics
+    tuple val(meta), path("outs/raw_feature_bc_matrix/barcodes.tsv.gz"), emit: barcodesgz
     path "versions.yml", emit: versions
 
     when:
