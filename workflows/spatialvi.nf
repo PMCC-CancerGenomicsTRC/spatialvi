@@ -83,7 +83,7 @@ workflow SPATIALVI {
     // SUBWORKFLOW: xfuse
     //
     ch_spaceranger_images = SPACERANGER.out.lowres.concat( READ_DATA.out.lowres )
-    ch_spaceranger_bcmatrix = SPACERANGER.out.barcodesgz.concat( READ_DATA.out.barcodesgz)
+    ch_spaceranger_bcmatrix = SPACERANGER.out.countsh5.concat( READ_DATA.out.countsh5)
     ch_spaceranger_tissuepositions = SPACERANGER.out.tissuepositions.concat( READ_DATA.out.tissuepositions )
     ch_spaceranger_scalefactors = SPACERANGER.out.scalefactors.concat( READ_DATA.out.scalefactors)
 
