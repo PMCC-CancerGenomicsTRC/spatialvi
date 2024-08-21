@@ -13,6 +13,11 @@ process READ_DATA {
 
     output:
     tuple val(meta), path("sdata_raw.zarr"), emit: sdata_raw
+    path("*/spatial/scalefactors_json.json"), emit: scalefactors
+    path("*/spatial/tissue_lowres_image.png"), emit: lowres
+    path("*/spatial/tissue_positions.csv"), emit: tissueposition
+    path("*/filtered_feature_bc_matrix.h5"), emit: countsh5
+    path("*/probe_set.csv"), emit: probeset
     path("versions.yml")                   , emit: versions
 
     when:
